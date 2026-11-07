@@ -1,0 +1,50 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.1.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.netflix.dgs.codegen' version '8.3.0'
+}
+
+group = 'com.netec'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+
+    // Compatibilidad con Jackson 3
+    implementation 'com.jayway.jsonpath:json-path:3.0.0'
+
+    // Alinear dependencias de Netflix DGS
+    implementation platform(
+        'com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:12.1.0'
+    )
+
+    // Framework GraphQL de Netflix
+    implementation 'com.netflix.graphql.dgs:dgs-starter'
+
+    // Servidor HTTP con Spring MVC
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+    // Pruebas automatizadas
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+generateJava {
+	schemaPaths = ["${projectDir}/src/main/resources/graphql-client"]
+	packageName = 'com.netec.neobank.codegen'
+	generateClient = true
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
