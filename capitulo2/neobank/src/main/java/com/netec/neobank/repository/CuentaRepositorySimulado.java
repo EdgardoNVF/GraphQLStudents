@@ -18,7 +18,7 @@ public class CuentaRepositorySimulado {
     public List<Map<String, Object>> buscarPorClientId(String clientId){
         System.out.println("REPOSITORIO- Buscar cuentas del cliente "+clientId);
         return cuentas.stream()
-                      .filter(t-> clientId.equals(t.get("clientId")))
+                      .filter(t-> clientId.equals(t.get("clienteId")))
                       .toList();
 
     }

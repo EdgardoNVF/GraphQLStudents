@@ -1,20 +1,19 @@
-"""
-Representa las operaciones y tipos de datos disponibles en NeoBank
-"""
+# Representa las operaciones y tipos de datos disponibles en NeoBank
 
-"Consulta raíz"
+
+# Consulta raíz
 type Query {
     cliente(id: ID!): Cliente
 }
 
-"tipo cliente"
+# tipo cliente
 type Cliente {
     id: ID!
     nombre: String!
     cuentas: [Cuenta!]!
 }
 
-"tipo cuenta"
+# tipo cuenta
 type Cuenta {
     numero: ID!
     saldo: Float!
@@ -22,7 +21,7 @@ type Cuenta {
     transacciones: [Transaccion!]!
 }
 
-"tipo transaccion"
+# tipo transaccion
 type Transaccion {
     id: ID!
     amount: Float!
