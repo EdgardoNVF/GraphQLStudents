@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: neobank-postgres
+    environment:
+      POSTGRES_DB: neobank
+      POSTGRES_USER: neobank
+      POSTGRES_PASSWORD: neobank_dev
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - neobank_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U neobank -d neobank"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  neobank_postgres_data:
