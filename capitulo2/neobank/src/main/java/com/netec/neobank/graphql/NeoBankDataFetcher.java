@@ -6,9 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.dataloader.DataLoader;
 
-import com.netec.neobank.repository.ClienteRepositorySimulado;
-import com.netec.neobank.repository.CuentaRepositorySimulado;
-import com.netec.neobank.repository.TransaccionRepositorySimulado;
+import com.netec.neobank.service.ClienteService;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
@@ -17,20 +15,13 @@ import com.netflix.graphql.dgs.InputArgument;
 
 @DgsComponent 
 public class NeoBankDataFetcher {
-    private final ClienteRepositorySimulado clientes;
-    private final CuentaRepositorySimulado cuentasRepository;
-    private final TransaccionRepositorySimulado transaccionesRepository;
 
+    private final ClienteService clientes;
 
-    public NeoBankDataFetcher(
-        ClienteRepositorySimulado clientes,
-        CuentaRepositorySimulado cuentasRepository,
-        TransaccionRepositorySimulado transaccionesRepository
-    ){
+    public NeoBankDataFetcher(ClienteService clientes){
         this.clientes=clientes;
-        this.cuentasRepository=cuentasRepository;
-        this.transaccionesRepository=transaccionesRepository;
     }
+    
 
     @DgsQuery //Query.cliente
     public Map<String,Object> cliente(@InputArgument("id") String id){
@@ -43,7 +34,7 @@ public class NeoBankDataFetcher {
         Map<String, Object> cliente =  dfe.getSource();
         String id = (String)cliente.get("id");
         System.out.println("DATAFETCHER - Cliente.cuentas de "+id);
-        return cuentasRepository.buscarPorClientId(id);
+        return clientes.buscarCuentas(id);
     }
 
 

@@ -8,24 +8,25 @@ import java.util.concurrent.CompletionStage;
 
 import org.dataloader.MappedBatchLoader;
 
-import com.netec.neobank.repository.TransaccionRepositorySimulado;
+import com.netec.neobank.service.TransaccionService;
 import com.netflix.graphql.dgs.DgsDataLoader;
 
 @DgsDataLoader(name="TransaccionesPorCuenta", maxBatchSize = 2)
 public class TransaccionDataLoader 
 implements MappedBatchLoader<String, List<Map<String, Object>> >{
 
-    private final TransaccionRepositorySimulado repositorio;
+    private final TransaccionService service;
 
-    public TransaccionDataLoader(TransaccionRepositorySimulado repositorySimulado){
-        this.repositorio=repositorySimulado;
+    public TransaccionDataLoader(TransaccionService service){
+            this.service=service;
     }
+    
 
     @Override
     public CompletionStage<Map<String, List<Map<String, Object>>>> load(Set<String> keys) {
         System.out.println("DATALOADER - Lote recibido "+keys);
 
-        return CompletableFuture.completedFuture(repositorio.buscarPorCuentas(keys));
+        return CompletableFuture.completedFuture(service.buscarPorCuentas(keys));
     }
 
 }
