@@ -1,3 +1,11 @@
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.3"
+    import: ["@key"]
+  )
+
+
+
 # Representa las operaciones y tipos de datos disponibles en NeoBank
 
 
@@ -7,7 +15,7 @@ type Query {
 }
 
 # tipo cliente
-type Cliente {
+type Cliente @key(fields: "id"){
     id: ID!
     nombre: String!
     cuentas: [Cuenta!]!

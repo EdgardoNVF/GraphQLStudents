@@ -1,22 +1,17 @@
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.3"
+    import: ["@key"]
+  )
+
+#Entidad Cliente conocida por su identificador federado
+type Cliente @key(fields: "id") {
+  id: ID!
+  puntos: Int!
+}
+
+
+#Consulta auxiliar para verificar que Beneficios está disponible
 type Query {
-  cliente(id: ID!): Cliente
-}
-
-type Cliente {
-  id: ID!
-  nombre: String!
-  cuentas: [Cuenta!]!
-}
-
-type Cuenta {
-  numero: ID!
-  saldo: Float!
-  moneda: String!
-  transacciones: [Transaction!]!
-}
-
-type Transaction {
-  id: ID!
-  amount: Float!
-  status: String!
+  estadoBeneficios: String!
 }

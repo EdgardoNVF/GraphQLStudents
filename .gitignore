@@ -1,0 +1,72 @@
+
+# ==========================================
+# Node.js / Apollo Gateway
+# ==========================================
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+.npm/
+coverage/
+dist/
+
+# ==========================================
+# Java / Gradle / Netflix DGS
+# ==========================================
+.gradle/
+**/.gradle/
+build/
+**/build/
+out/
+target/
+*.class
+*.log
+
+# ==========================================
+# IDEs
+# ==========================================
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# ==========================================
+# Sistema operativo
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# Variables de entorno y credenciales
+# ==========================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+
+# ==========================================
+# Archivos temporales
+# ==========================================
+*.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+*~
+temp/
+tmp/
+
+# ==========================================
+# Docker
+# ==========================================
+docker-compose.override.yml
+*.pid
