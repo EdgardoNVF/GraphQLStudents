@@ -1,0 +1,22 @@
+type Query {
+  cliente(id: ID!): Cliente
+}
+
+type Cliente {
+  id: ID!
+  nombre: String!
+  cuentas: [Cuenta!]!
+}
+
+type Cuenta {
+  numero: ID!
+  saldo: Float!
+  moneda: String!
+  transacciones: [Transaction!]!
+}
+
+type Transaction {
+  id: ID!
+  amount: Float!
+  status: String!
+}

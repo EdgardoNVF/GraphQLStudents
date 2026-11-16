@@ -1,0 +1,4 @@
+CREATE TABLE clientes (
+    id VARCHAR(36) PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL
+);
