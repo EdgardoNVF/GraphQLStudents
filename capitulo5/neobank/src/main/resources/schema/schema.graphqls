@@ -27,6 +27,12 @@ type Cuenta {
     saldo: Float!
     moneda: String!
     transacciones: [Transaccion!]!
+    estadisticasMovimientos: EstadisticasMovimientos!
+}
+
+type EstadisticasMovimientos {
+    cantidad: Int!
+    montoTotal: Float!
 }
 
 # tipo transaccion
